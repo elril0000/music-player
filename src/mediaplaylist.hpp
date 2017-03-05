@@ -2,10 +2,9 @@
 
 #include <QMediaPlaylist>
 
-class MediaPlaylist : public QMediaPlaylist
+struct MediaPlaylist : public QMediaPlaylist
 {
-public:
-    explicit MediaPlaylist(QObject *parent = nullptr);
+	explicit MediaPlaylist(QObject *parent = nullptr);
     
 private:
     
