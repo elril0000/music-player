@@ -2,11 +2,10 @@
 
 #include <QMediaPlayer>
 
-class MediaPlayer : public QMediaPlayer
+struct MediaPlayer : QMediaPlayer
 {
-public:
-    explicit MediaPlayer(QObject *parent = nullptr);
-    
+	explicit MediaPlayer(QObject *parent = nullptr);
+	
 private:
-    
+	
 };

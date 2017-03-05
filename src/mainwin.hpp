@@ -7,9 +7,8 @@
 #include "mediaplayer.hpp"
 #include "mediaplaylist.hpp"
 
-class MainWin : public QMainWindow
+struct MainWin : QMainWindow
 {
-public:
     explicit MainWin(QWidget *parent = nullptr);
     ~MainWin();
 
