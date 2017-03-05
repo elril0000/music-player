@@ -1,28 +1,40 @@
 cmake_minimum_required(VERSION 2.8.11)
-project(musicplayer)
+project(music-player)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 
-# Find the QtWidgets library
-find_package(Qt5Widgets REQUIRED)
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 1)
+set(LIBRARY_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
+set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
-set(musicplayer_SRC
-  src/main.cpp
-  src/musicplayer.cpp
+if(UNIX)
+	IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+		SET(OPERATINGSYSTEM Linux)
+	ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+elseif(WIN32)
+	set(OPERATINGSYSTEM Win32)
+	
+endif()
+
+configure_file(
+  "${PROJECT_SOURCE_DIR}/src/config.hpp.in"
+  "${PROJECT_SOURCE_DIR}/src/config.hpp"
 )
 
-# Create code from a list of Qt designer ui files.
-#set(CMAKE_AUTOUIC ON) # use this if you have CMake 3.x instead of the following
-qt5_wrap_ui(musicplayer_SRC src/musicplayer.ui)
+# Find the QtWidgets library
+find_package(Qt5 REQUIRED Core Multimedia COMPONENTS Widgets MultimediaWidgets)
+
+file(GLOB SRCS src/*.cpp)
 
 # Tell CMake to create the helloworld executable
-add_executable(musicplayer ${musicplayer_SRC})
+add_executable(${PROJECT_NAME} ${SRCS})
 
 # Use the Widgets module from Qt 5.
-target_link_libraries(musicplayer Qt5::Widgets)
+target_link_libraries(${PROJECT_NAME} Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets)
 
 # Install the executable
-install(TARGETS musicplayer DESTINATION bin)
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
