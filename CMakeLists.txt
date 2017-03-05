@@ -12,14 +12,6 @@ set(LIBRARY_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 set (CMAKE_CXX_STANDARD 14)
 
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-target_compile_options(${PROJECT_NAME} PUBLIC -Wall -pedantic -Werror -Wextra)
-elseif (GNU)
-  target_compile_definitions(${PROJECT_NAME} PUBLIC -Wsuggest-override -Wmain)
-elseif (MSVC)
- # using Visual Studio C++
-endif()
-
 if(UNIX)
 	IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 		SET(OPERATINGSYSTEM Linux)
@@ -41,6 +33,14 @@ file(GLOB SRCS src/*.cpp)
 
 # Tell CMake to create the helloworld executable
 add_executable(${PROJECT_NAME} ${SRCS})
+
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+target_compile_options(${PROJECT_NAME} PUBLIC -Wall -pedantic -Werror -Wextra)
+elseif (GNU)
+  target_compile_definitions(${PROJECT_NAME} PUBLIC -Wsuggest-override -Wmain)
+elseif (MSVC)
+ # using Visual Studio C++
+endif()
 
 # Use the Widgets module from Qt 5.
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets)

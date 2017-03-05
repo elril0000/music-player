@@ -15,7 +15,6 @@ public:
     explicit MainWin(QWidget *parent = nullptr);
     ~MainWin();
 
-public slots:
     void next();
     void previous();
     void playPause();
