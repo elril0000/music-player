@@ -29,12 +29,12 @@ void MainWin::createActions()
     _repeatAction = new QAction(tr("Repeat"), this);
     _shuffleAction = new QAction(tr("Shuffle"), this);
     
-    connect(_quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
-    connect(_previousAction, SIGNAL(triggered()), SLOT(previous()));
-    connect(_nextAction, SIGNAL(triggered()), SLOT(next()));
-    connect(_playPauseAction, SIGNAL(triggered()), SLOT(playPause()));
-    connect(_stopAction, SIGNAL(triggered()), SLOT(stop()));
-    connect(_muteAction, SIGNAL(triggered(bool)), SLOT(mute(bool)));
+    connect(_quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
+    connect(_previousAction, &QAction::triggered, [&]{ previous(); });
+    connect(_nextAction, &QAction::triggered, [&]{ next(); });
+    connect(_playPauseAction, &QAction::triggered, [&]{ playPause(); });
+    connect(_stopAction, &QAction::triggered, [&]{ stop(); });
+    connect(_muteAction, &QAction::triggered, [&](bool m){ mute(m); });
 }
 
 void MainWin::createMenus()
