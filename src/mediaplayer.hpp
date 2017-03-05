@@ -5,7 +5,7 @@
 class MediaPlayer : public QMediaPlayer
 {
 public:
-    explicit MediaPlayer();
+    explicit MediaPlayer(QObject *parent = nullptr);
     
 private:
     

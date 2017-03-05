@@ -2,11 +2,8 @@
 
 MainWin::MainWin(QWidget *parent) : QMainWindow(parent)
 {
-    _mediaPlaylist = new MediaPlaylist();
-    
-    _mediaPlayer = new MediaPlayer();
-    _mediaPlayer->setVolume(100);
-    _mediaPlayer->setPlaylist(_mediaPlaylist);
+    _mediaPlayer.setVolume(100);
+    _mediaPlayer.setPlaylist(&_mediaPlaylist);
     
     createActions();
     createMenus();
@@ -59,31 +56,31 @@ void MainWin::createMenus()
 void MainWin::next()
 {
     std::cout << "Next" << std::endl;
-    _mediaPlaylist->next();
+    _mediaPlaylist.next();
 }
 
 void MainWin::previous()
 {
     std::cout << "Previous" << std::endl;
-    _mediaPlaylist->previous();
+    _mediaPlaylist.previous();
 }
 
 void MainWin::playPause()
 {
     std::cout << "Play or Pause" << std::endl;
-    switch(_mediaPlayer->state())
+    switch(_mediaPlayer.state())
     {
         case QMediaPlayer::StoppedState:
             std::cout << "Play" << std::endl;
-            _mediaPlayer->play();
+            _mediaPlayer.play();
             break;
         case QMediaPlayer::PausedState:
             std::cout << "Play" << std::endl;
-            _mediaPlayer->play();
+            _mediaPlayer.play();
             break;
         case QMediaPlayer::PlayingState:
             std::cout << "Pause" << std::endl;
-            _mediaPlayer->pause();
+            _mediaPlayer.pause();
             break;
     }
 }
@@ -91,7 +88,7 @@ void MainWin::playPause()
 void MainWin::stop()
 {
     std::cout << "Stop" << std::endl;
-    _mediaPlayer->stop();
+    _mediaPlayer.stop();
 }
 
 void MainWin::mute(bool muted)
@@ -101,7 +98,7 @@ void MainWin::mute(bool muted)
     else
         std::cout << "Unmute" << std::endl;
     
-    _mediaPlayer->setMuted(muted);
+    _mediaPlayer.setMuted(muted);
 }
 
 

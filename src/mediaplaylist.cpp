@@ -1,6 +1,6 @@
 #include "mediaplaylist.hpp"
 
-MediaPlaylist::MediaPlaylist()
+MediaPlaylist::MediaPlaylist(QObject *parent) : QMediaPlaylist(parent)
 {
     
 }

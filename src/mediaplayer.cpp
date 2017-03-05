@@ -1,6 +1,6 @@
 #include "mediaplayer.hpp"
 
-MediaPlayer::MediaPlayer()
+MediaPlayer::MediaPlayer(QObject *parent) : QMediaPlayer(parent)
 {
     
 }

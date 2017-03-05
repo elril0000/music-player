@@ -5,7 +5,7 @@
 class MediaPlaylist : public QMediaPlaylist
 {
 public:
-    explicit MediaPlaylist();
+    explicit MediaPlaylist(QObject *parent = nullptr);
     
 private:
     

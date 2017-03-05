@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
 #include <QtWidgets>
 
 #include "mediaplayer.hpp"
@@ -11,7 +12,7 @@ class MainWin : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWin(QWidget *parent = 0);
+    explicit MainWin(QWidget *parent = nullptr);
     ~MainWin();
 
 public slots:
@@ -31,11 +32,11 @@ private:
     
     QMenu *_fileMenu;
     QMenu *_controlMenu;
-    QMenu *_viewMenu;
+    //QMenu *_viewMenu;
     
-    QToolBar *_controlToolBar;
+    //QToolBar *_controlToolBar;
     
-    QDockWidget *_libraryDock;
+    //QDockWidget *_libraryDock;
     
     QAction *_openFileAction;
     QAction *_openFolderAction;
@@ -51,10 +52,10 @@ private:
     QAction *_repeatAction;
     QAction *_shuffleAction;
     
-    QSlider *_volumeSlider;
-    QSlider *_seekSlider;
+    //QSlider *_volumeSlider;
+    //QSlider *_seekSlider;
     
-    MediaPlayer *_mediaPlayer;
-    MediaPlaylist *_mediaPlaylist;
+    MediaPlayer _mediaPlayer;
+    MediaPlaylist _mediaPlaylist;
 };
 
