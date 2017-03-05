@@ -40,15 +40,11 @@ void MainWin::createActions()
 void MainWin::createMenus()
 {
 	_fileMenu = menuBar()->addMenu(tr("File"));
-	QList<QAction*> fileActions;
-	fileActions << _openFileAction << _openFolderAction << _openPlaylistAction << _savePlaylistAction << _quitAction;
-	_fileMenu->addActions(fileActions);
+	_fileMenu->addActions({_openFileAction, _openFolderAction, _openPlaylistAction, _savePlaylistAction, _quitAction});
 	_fileMenu->insertSeparator(_quitAction);
-
+    
 	_controlMenu = menuBar()->addMenu(tr("Control"));
-	QList<QAction*> controlAction;
-	controlAction << _previousAction << _playPauseAction << _stopAction << _nextAction << _muteAction << _repeatAction << _shuffleAction;
-	_controlMenu->addActions(controlAction);
+	_controlMenu->addActions({_previousAction, _playPauseAction, _stopAction, _nextAction, _muteAction, _repeatAction, _shuffleAction});
 	_controlMenu->insertSeparator(_muteAction);
 }
 
