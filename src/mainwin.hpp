@@ -32,8 +32,9 @@ private:
 
 	//QToolBar *_controlToolBar;
 
-	//QDockWidget *_libraryDock;
-
+	QDockWidget *_libraryDock;
+	QDockWidget *_fileTreeDock;
+	
 	QAction *_openFileAction;
 	QAction *_openFolderAction;
 	QAction *_openPlaylistAction;

@@ -7,6 +7,7 @@ MainWin::MainWin(QWidget *parent) : QMainWindow(parent)
 
 	createActions();
 	createMenus();
+	createDock();
 }
 
 void MainWin::createActions()
@@ -46,6 +47,27 @@ void MainWin::createMenus()
 	_controlMenu = menuBar()->addMenu(tr("Control"));
 	_controlMenu->addActions({_previousAction, _playPauseAction, _stopAction, _nextAction, _muteAction, _repeatAction, _shuffleAction});
 	_controlMenu->insertSeparator(_muteAction);
+}
+
+void MainWin::createDock()
+{
+	QTreeView *tree = new QTreeView();
+	
+	_libraryDock = new QDockWidget(tr("Library"));
+	_libraryDock->setWidget(tree);
+	_libraryDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	addDockWidget(Qt::LeftDockWidgetArea, _libraryDock);
+	
+	QFileSystemModel *fileTreeModel = new QFileSystemModel;
+	fileTreeModel->setRootPath(QStandardPaths::displayName(QStandardPaths::MusicLocation));
+	QTreeView *fileTreeView = new QTreeView();
+	fileTreeView->setModel(fileTreeModel);
+	
+	_fileTreeDock = new QDockWidget(tr("File Tree"));
+	_fileTreeDock->setWidget(fileTreeView);
+	_fileTreeDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	addDockWidget(Qt::LeftDockWidgetArea, _fileTreeDock);
+	_fileTreeDock->setVisible(false);
 }
 
 
