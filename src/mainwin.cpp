@@ -8,6 +8,7 @@ MainWin::MainWin(QWidget *parent) : QMainWindow(parent)
 	createActions();
 	createMenus();
 	createDock();
+	createCentralWidget();
 }
 
 void MainWin::createActions()
@@ -51,6 +52,10 @@ void MainWin::createMenus()
 
 void MainWin::createDock()
 {
+	setDockOptions(QMainWindow::AnimatedDocks | 
+							  QMainWindow::AllowTabbedDocks | 
+							  QMainWindow::ForceTabbedDocks | 
+							  QMainWindow::VerticalTabs);
 	QTreeView *tree = new QTreeView();
 	
 	_libraryDock = new QDockWidget(tr("Library"));
@@ -67,7 +72,16 @@ void MainWin::createDock()
 	_fileTreeDock->setWidget(fileTreeView);
 	_fileTreeDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	addDockWidget(Qt::LeftDockWidgetArea, _fileTreeDock);
+	tabifyDockWidget(_libraryDock, _fileTreeDock);
+	_libraryDock->raise();
 	_fileTreeDock->setVisible(false);
+}
+
+void MainWin::createCentralWidget()
+{
+	QListView *centralView = new QListView();
+	
+	setCentralWidget(centralView);
 }
 
 
