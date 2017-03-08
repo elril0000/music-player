@@ -37,6 +37,8 @@ private:
 	QDockWidget *_libraryDock;
 	QDockWidget *_fileTreeDock;
 	
+	QListView *_playlistView;
+	
 	QAction *_openFileAction;
 	QAction *_openFolderAction;
 	QAction *_openPlaylistAction;
