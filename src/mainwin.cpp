@@ -53,7 +53,7 @@ void MainWin::createMenus()
 	_controlMenu->insertSeparator(&mediaActions.mute);
 	
 	_viewMenu = menuBar()->addMenu(tr("View"));
-	_viewMenu->addActions({_libraryDock->toggleViewAction(), _fileTreeDock->toggleViewAction()});
+	_viewMenu->addActions({docks.library.toggleViewAction(), docks.filetree.toggleViewAction()});
 }
 
 void MainWin::createDock()
@@ -62,25 +62,9 @@ void MainWin::createDock()
 				   QMainWindow::AllowTabbedDocks | 
 				   QMainWindow::ForceTabbedDocks | 
 				   QMainWindow::VerticalTabs);
-	QTreeView *tree = new QTreeView(this);
-	
-	_libraryDock = new QDockWidget(tr("Library"), this);
-	_libraryDock->setWidget(tree);
-	_libraryDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-	addDockWidget(Qt::LeftDockWidgetArea, _libraryDock);
-	
-	QFileSystemModel *fileTreeModel = new QFileSystemModel(this);
-	fileTreeModel->setRootPath(QStandardPaths::displayName(QStandardPaths::MusicLocation));
-	QTreeView *fileTreeView = new QTreeView(this);
-	fileTreeView->setModel(fileTreeModel);
-	
-	_fileTreeDock = new QDockWidget(tr("File Tree"), this);
-	_fileTreeDock->setWidget(fileTreeView);
-	_fileTreeDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-	addDockWidget(Qt::LeftDockWidgetArea, _fileTreeDock);
-	tabifyDockWidget(_libraryDock, _fileTreeDock);
-	_libraryDock->raise();
-	_fileTreeDock->setVisible(false);
+	addDockWidget(Qt::LeftDockWidgetArea, &docks.library);
+	addDockWidget(Qt::LeftDockWidgetArea, &docks.filetree);
+	tabifyDockWidget(&docks.library, &docks.filetree);
 }
 
 void MainWin::createCentralWidget()

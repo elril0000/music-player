@@ -8,6 +8,7 @@
 #include "mediaplaylist.hpp"
 
 #include "mediaaction.h"
+#include "docks.h"
 
 struct MainWin : QMainWindow
 {
@@ -34,8 +35,6 @@ private:
 
 	//QToolBar *_controlToolBar;
 
-	QDockWidget *_libraryDock;
-	QDockWidget *_fileTreeDock;
 	
 	QListView *_playlistView;
 	
@@ -45,6 +44,7 @@ private:
 	QAction *_savePlaylistAction;
 	QAction *_quitAction;
 
+	Docks docks;
 	MediaAction mediaActions;
 
 	//QSlider *_volumeSlider;
