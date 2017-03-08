@@ -54,19 +54,19 @@ void MainWin::createDock()
 							  QMainWindow::AllowTabbedDocks | 
 							  QMainWindow::ForceTabbedDocks | 
 							  QMainWindow::VerticalTabs);
-	QTreeView *tree = new QTreeView();
+	QTreeView *tree = new QTreeView(this);
 	
-	_libraryDock = new QDockWidget(tr("Library"));
+	_libraryDock = new QDockWidget(tr("Library"), this);
 	_libraryDock->setWidget(tree);
 	_libraryDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	addDockWidget(Qt::LeftDockWidgetArea, _libraryDock);
 	
-	QFileSystemModel *fileTreeModel = new QFileSystemModel;
+	QFileSystemModel *fileTreeModel = new QFileSystemModel(this);
 	fileTreeModel->setRootPath(QStandardPaths::displayName(QStandardPaths::MusicLocation));
-	QTreeView *fileTreeView = new QTreeView();
+	QTreeView *fileTreeView = new QTreeView(this);
 	fileTreeView->setModel(fileTreeModel);
 	
-	_fileTreeDock = new QDockWidget(tr("File Tree"));
+	_fileTreeDock = new QDockWidget(tr("File Tree"), this);
 	_fileTreeDock->setWidget(fileTreeView);
 	_fileTreeDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 	addDockWidget(Qt::LeftDockWidgetArea, _fileTreeDock);
@@ -77,7 +77,7 @@ void MainWin::createDock()
 
 void MainWin::createCentralWidget()
 {
-	QListView *centralView = new QListView();
+	QListView *centralView = new QListView(this);
 	
 	setCentralWidget(centralView);
 }
