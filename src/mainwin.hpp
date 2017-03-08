@@ -30,7 +30,7 @@ private:
 
 	QMenu *_fileMenu;
 	QMenu *_controlMenu;
-	//QMenu *_viewMenu;
+	QMenu *_viewMenu;
 
 	//QToolBar *_controlToolBar;
 

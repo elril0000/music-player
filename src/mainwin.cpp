@@ -8,8 +8,8 @@ MainWin::MainWin(QWidget *parent) : QMainWindow(parent)
 	resize(QSize{1080, 720});
 	
 	createActions();
-	createMenus();
 	createDock();
+	createMenus();
 	createCentralWidget();
 }
 
@@ -48,14 +48,17 @@ void MainWin::createMenus()
 	});
 	
 	_controlMenu->insertSeparator(&mediaActions.mute);
+	
+	_viewMenu = menuBar()->addMenu(tr("View"));
+	_viewMenu->addActions({_libraryDock->toggleViewAction(), _fileTreeDock->toggleViewAction()});
 }
 
 void MainWin::createDock()
 {
 	setDockOptions(QMainWindow::AnimatedDocks | 
-							  QMainWindow::AllowTabbedDocks | 
-							  QMainWindow::ForceTabbedDocks | 
-							  QMainWindow::VerticalTabs);
+				   QMainWindow::AllowTabbedDocks | 
+				   QMainWindow::ForceTabbedDocks | 
+				   QMainWindow::VerticalTabs);
 	QTreeView *tree = new QTreeView(this);
 	
 	_libraryDock = new QDockWidget(tr("Library"), this);
