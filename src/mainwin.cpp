@@ -19,24 +19,12 @@ void MainWin::createActions()
 	_savePlaylistAction = new QAction(tr("Save Playlist"), this);
 	_quitAction = new QAction(tr("&Quit"), this);
 
-	_previousAction = new QAction(tr("Previous"), this);
-	_playPauseAction = new QAction(tr("Play"), this);
-	_stopAction = new QAction(tr("Stop"), this);
-	_nextAction = new QAction(tr("Next"), this);
-
-	_muteAction = new QAction(tr("Mute"), this);
-	_muteAction->setCheckable(true);
-	_muteAction->setChecked(false);
-
-	_repeatAction = new QAction(tr("Repeat"), this);
-	_shuffleAction = new QAction(tr("Shuffle"), this);
-
 	connect(_quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
-	connect(_previousAction, &QAction::triggered, [&]{ previous(); });
-	connect(_nextAction, &QAction::triggered, [&]{ next(); });
-	connect(_playPauseAction, &QAction::triggered, [&]{ playPause(); });
-	connect(_stopAction, &QAction::triggered, [&]{ stop(); });
-	connect(_muteAction, &QAction::triggered, [&](bool m){ mute(m); });
+	connect(&mediaActions.previous, &QAction::triggered, [&]{ previous(); });
+	connect(&mediaActions.next, &QAction::triggered, [&]{ next(); });
+	connect(&mediaActions.playPause, &QAction::triggered, [&]{ playPause(); });
+	connect(&mediaActions.stop, &QAction::triggered, [&]{ stop(); });
+	connect(&mediaActions.mute, &QAction::triggered, [&](bool m){ mute(m); });
 }
 
 void MainWin::createMenus()
@@ -46,8 +34,18 @@ void MainWin::createMenus()
 	_fileMenu->insertSeparator(_quitAction);
     
 	_controlMenu = menuBar()->addMenu(tr("Control"));
-	_controlMenu->addActions({_previousAction, _playPauseAction, _stopAction, _nextAction, _muteAction, _repeatAction, _shuffleAction});
-	_controlMenu->insertSeparator(_muteAction);
+	
+	_controlMenu->addActions({
+		&mediaActions.previous,
+		&mediaActions.playPause,
+		&mediaActions.stop,
+		&mediaActions.next,
+		&mediaActions.mute,
+		&mediaActions.repeat,
+		&mediaActions.shuffle
+	});
+	
+	_controlMenu->insertSeparator(&mediaActions.mute);
 }
 
 void MainWin::createDock()

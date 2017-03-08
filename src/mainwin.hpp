@@ -7,6 +7,8 @@
 #include "mediaplayer.hpp"
 #include "mediaplaylist.hpp"
 
+#include "mediaaction.h"
+
 struct MainWin : QMainWindow
 {
 	explicit MainWin(QWidget *parent = nullptr);
@@ -41,13 +43,7 @@ private:
 	QAction *_savePlaylistAction;
 	QAction *_quitAction;
 
-	QAction *_previousAction;
-	QAction *_playPauseAction;
-	QAction *_stopAction;
-	QAction *_nextAction;
-	QAction *_muteAction;
-	QAction *_repeatAction;
-	QAction *_shuffleAction;
+	MediaAction mediaActions;
 
 	//QSlider *_volumeSlider;
 	//QSlider *_seekSlider;
