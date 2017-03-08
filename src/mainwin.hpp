@@ -12,7 +12,6 @@
 struct MainWin : QMainWindow
 {
 	explicit MainWin(QWidget *parent = nullptr);
-	~MainWin();
 
 	void next();
 	void previous();

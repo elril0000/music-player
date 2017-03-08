@@ -135,9 +135,3 @@ void MainWin::mute(bool muted)
 
 	_mediaPlayer.setMuted(muted);
 }
-
-
-MainWin::~MainWin()
-{
-    
-}
