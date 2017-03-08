@@ -6,11 +6,14 @@ MainWin::MainWin(QWidget *parent) : QMainWindow(parent)
 	_mediaPlayer.setPlaylist(&_mediaPlaylist);
 	
 	resize(QSize{1080, 720});
+	setState(_mediaPlayer.state());
 	
 	createActions();
 	createDock();
 	createMenus();
 	createCentralWidget();
+	
+	connect(&_mediaPlayer, &MediaPlayer::stateChanged, [&](MediaPlayer::State state){ setState(state); });
 }
 
 void MainWin::createActions()
@@ -69,6 +72,24 @@ void MainWin::createCentralWidget()
 	QListView *centralView = new QListView(this);
 	
 	setCentralWidget(centralView);
+}
+
+void MainWin::setState(MediaPlayer::State state)
+{
+	switch(state)
+	{
+		case MediaPlayer::StoppedState:
+			setWindowTitle(tr("Stopped - Music Player"));
+			break;
+			
+		case MediaPlayer::PausedState:
+			setWindowTitle(tr("Pause - Music Player"));
+			break;
+			
+		case MediaPlayer::PlayingState:
+			setWindowTitle(tr("Playing - Music Player"));
+			break;
+	}
 }
 
 

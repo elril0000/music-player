@@ -27,6 +27,7 @@ private:
 	void createMenus();
 	void createStatusBar();
 	void createCentralWidget();
+	void setState(MediaPlayer::State state);
 
 	QMenu *_fileMenu;
 	QMenu *_controlMenu;
