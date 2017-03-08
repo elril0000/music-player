@@ -4,8 +4,5 @@
 
 struct MediaPlayer : QMediaPlayer
 {
-	explicit MediaPlayer(QObject *parent = nullptr);
-	
-private:
-	
+	using QMediaPlayer::QMediaPlayer;
 };
