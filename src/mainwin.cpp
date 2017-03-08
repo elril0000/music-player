@@ -4,7 +4,9 @@ MainWin::MainWin(QWidget *parent) : QMainWindow(parent)
 {
 	_mediaPlayer.setVolume(100);
 	_mediaPlayer.setPlaylist(&_mediaPlaylist);
-
+	
+	resize(QSize{1080, 720});
+	
 	createActions();
 	createMenus();
 	createDock();
