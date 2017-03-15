@@ -36,6 +36,8 @@ private:
 	//QToolBar *_controlToolBar;
 
 	
+	QListView *_playlistView;
+	
 	QAction *_openFileAction;
 	QAction *_openFolderAction;
 	QAction *_openPlaylistAction;

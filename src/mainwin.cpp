@@ -18,10 +18,10 @@ MainWin::MainWin(QWidget *parent) : QMainWindow(parent)
 
 void MainWin::createActions()
 {
-	_openFileAction = new QAction(tr("Open File"), this);
-	_openFolderAction = new QAction(tr("Open Folder"), this);
+	_openFileAction = new QAction(tr("Add File"), this);
+	_openFolderAction = new QAction(tr("Add Folder"), this);
 	_openPlaylistAction = new QAction(tr("Open Playlist"), this);
-	_savePlaylistAction = new QAction(tr("Save Playlist"), this);
+	_savePlaylistAction = new QAction(tr("Export Playlist"), this);
 	_quitAction = new QAction(tr("&Quit"), this);
 
 	connect(_quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
