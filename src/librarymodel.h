@@ -20,7 +20,7 @@ private:
 			return visitor(*static_cast<LibraryArtist*>(parent.internalPointer()));
 		} else if (parent.parent().isValid()) {
 			return visitor(*static_cast<LibraryAlbum*>(parent.internalPointer()));
-		} else if (parent.parent().parent().isValid()) {
+		} else {
 			return visitor(*static_cast<LibrarySong*>(parent.internalPointer()));
 		}
 	}
