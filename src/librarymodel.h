@@ -18,7 +18,7 @@ private:
 	visitIndex(const QModelIndex& parent, T visitor) {
 		if (!parent.isValid()) {
 			return visitor(*static_cast<LibraryArtist*>(parent.internalPointer()));
-		} else if (parent.parent().isValid()) {
+		} else if (!parent.parent().isValid()) {
 			return visitor(*static_cast<LibraryAlbum*>(parent.internalPointer()));
 		} else {
 			return visitor(*static_cast<LibrarySong*>(parent.internalPointer()));
